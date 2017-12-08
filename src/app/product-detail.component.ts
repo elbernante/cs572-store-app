@@ -4,28 +4,42 @@ import { Product } from './product';
 @Component({
   selector: 'product-detail',
   template: `
-    <div *ngIf="product">
-      <h2> {{ product.name }} Details</h2>
-      <div><span>ID:</span> {{ product.id }}</div>
-      <div>
-        <label>Name:
-          <input [(ngModel)]="product.name" placeholder="Name" >
-        </label>
-      </div>
-      <div>
-        <label>Price:
-          <input type="number" [(ngModel)]="product.price" placeholder="Price" >
-        </label>
-      </div>
-      <div>
-        <label>Description:
-          <input [(ngModel)]="product.description" placeholder="Description" >
-        </label>
-      </div>
-      <button (click)="requestDelete()">Delete</button>
+    <div *ngIf="product" class="panel panel-primary">
+      <div class="panel-heading"> {{ product.name }} </div>
+      <div class="form-horizontal" role="form">
+        <div class="form-group">
+          <label class="col-sm-3">ID:</label>
+          <div class="col-sm-9">
+            <span> {{ product.id }}</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3">Name:</label>
+          <div class="col-sm-9">
+            <input [(ngModel)]="product.name" type="text" class="form-control" placeholder="name">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3">Price:</label>
+          <div class="col-sm-9">
+            <input [(ngModel)]="product.price" type="number" class="form-control" placeholder="price">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3">Description:</label>
+          <div class="col-sm-9">
+            <input [(ngModel)]="product.description" type="text" class="form-control" placeholder="description">
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-offset-3 col-sm-9">
+            <button (click)="requestDelete()" type="button" class="btn btn-danger">Delete</button>
+          </div>
+        </div>
+      </div> 
     </div>
   `,
-  styles: []
+  styles: ['.form-horizontal { margin: 10px }']
 })
 export class ProductDetailComponent implements OnInit {
   

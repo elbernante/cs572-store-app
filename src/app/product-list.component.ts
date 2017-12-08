@@ -5,15 +5,23 @@ import { Product } from './product';
 @Component({
   selector: 'product-list',
   template: `
-    <ul>
-    <li *ngFor="let product of products"
-        (click)="onSelect(product)">
-        {{ product.id + ' : ' + product.name }}
-      </li>
-    </ul>
-    <product-detail [product]="selectedProduct"
-                    (deleteProduct)="deleteProduct($event)">
-    </product-detail>
+    <div clas="row">
+      <div class="col-sm-3">
+        <div class="list-group">
+          <a href="#" 
+              *ngFor="let product of products"
+              (click)="onSelect(product)"
+              [ngClass]="getClassForProduct(product)">
+              {{ product.id + ' : ' + product.name }}
+          </a>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <product-detail [product]="selectedProduct"
+                      (deleteProduct)="deleteProduct($event)">
+        </product-detail>
+      </div>
+    </div>
   `,
   styles: []
 })
@@ -39,5 +47,13 @@ export class ProductListComponent implements OnInit {
   deleteProduct(product: Product) {
     this.selectedProduct = null;
     this.products = this.products.filter(e => e !== product);
+  }
+
+  getClassForProduct(product: Product) {
+    return {
+      'list-group-item': true,
+      'list-group-item-action': true,
+      'active': product === this.selectedProduct
+    };
   }
 }
