@@ -16,7 +16,7 @@ import { Product } from './product';
           </a>
         </div>
       </div>
-      <div class="col-sm-4">
+      <div class="col-sm-5">
         <product-detail [product]="selectedProduct"
                       (deleteProduct)="deleteProduct($event)">
         </product-detail>
