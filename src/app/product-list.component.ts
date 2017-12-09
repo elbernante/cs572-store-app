@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core'; 
+import { ProductService } from './product.service';
 import { Product } from './product';
 
 
@@ -16,7 +17,7 @@ import { Product } from './product';
           </a>
         </div>
       </div>
-      <div class="col-sm-5">
+      <div class="col-sm-6 col-md-4">
         <product-detail [product]="selectedProduct"
                       (deleteProduct)="deleteProduct($event)">
         </product-detail>
@@ -30,14 +31,16 @@ export class ProductListComponent implements OnInit {
   products: Product[];
   selectedProduct: Product;
   
-  constructor () {}
+  constructor (private productService: ProductService) {}
   
   ngOnInit() {
-    this.products = [
-      {id: 1, name: 'iPhone', price: 998.78, description: 'An overpriced phone'},
-      {id: 2, name: 'iPad', price: 430.23, description: 'Apple tablet'},
-      {id: 3, name: 'Apple TV', price: 299.00, description: 'TV box'}
-    ];
+    this.getProducts();
+  }
+  
+  getProducts() {
+    this.productService
+        .getAllProducts()
+        .subscribe(p => this.products = p);
   }
 
   onSelect(product: Product) {
@@ -45,8 +48,14 @@ export class ProductListComponent implements OnInit {
   }
 
   deleteProduct(product: Product) {
-    this.selectedProduct = null;
-    this.products = this.products.filter(e => e !== product);
+    this.productService
+        .deleteProductById(product.id)
+        .subscribe(res => {
+          if (res) {
+            this.selectedProduct = null;
+            this.getProducts();
+          }
+        });
   }
 
   getClassForProduct(product: Product) {

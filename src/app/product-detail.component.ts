@@ -8,8 +8,8 @@ import { Product } from './product';
       <div class="panel-heading"> {{ product.name }} </div>
       <div class="form-horizontal" role="form">
         <div class="form-group">
-          <label class="col-md-3">ID:</label>
-          <div class="col-md-9">
+          <label class="col-xs-1 col-md-3">ID:</label>
+          <div class="col-xs-10 col-md-9">
             <span> {{ product.id }}</span>
           </div>
         </div>
