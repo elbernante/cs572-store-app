@@ -25,7 +25,10 @@ export class ProductService {
   }
   
   deleteProductById(id: number): Observable<boolean> {
-    this.products = this.products.filter(e => e.id !== id);
-    return of(true);
+    return Observable.create(o => {  
+      this.products = this.products.filter(e => e.id !== id);
+      o.next(true);
+      o.complete();
+    });
   }
 }

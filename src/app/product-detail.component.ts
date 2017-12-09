@@ -16,24 +16,28 @@ import { Product } from './product';
         <div class="form-group">
           <label class="col-md-3">Name:</label>
           <div class="col-md-9">
-            <input [(ngModel)]="product.name" type="text" class="form-control" placeholder="name">
+            <input [(ngModel)]="product.name" 
+                   type="text" class="form-control" placeholder="name">
           </div>
         </div>
         <div class="form-group">
           <label class="col-md-3">Price:</label>
           <div class="col-md-9">
-            <input [(ngModel)]="product.price" type="number" class="form-control" placeholder="price">
+            <input [(ngModel)]="product.price" 
+                   type="number" class="form-control" placeholder="price">
           </div>
         </div>
         <div class="form-group">
           <label class="col-md-3">Description:</label>
           <div class="col-md-9">
-            <input [(ngModel)]="product.description" type="text" class="form-control" placeholder="description">
+            <input [(ngModel)]="product.description" 
+                   type="text" class="form-control" placeholder="description">
           </div>
         </div>
         <div class="form-group">
           <div class="col-md-offset-3 col-md-9">
-            <button (click)="requestDelete()" type="button" class="btn btn-danger">Delete</button>
+            <button (click)="requestDelete()" 
+                    type="button" class="btn btn-danger">Delete</button>
           </div>
         </div>
       </div> 
