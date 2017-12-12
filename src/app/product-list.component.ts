@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core'; 
+import { Observable } from 'rxjs/Observable';
 import { ProductService } from './product.service';
 import { Product } from './product';
 
@@ -10,7 +11,7 @@ import { Product } from './product';
       <div class="col-sm-3">
         <div class="list-group">
           <a href="#" 
-              *ngFor="let product of products"
+              *ngFor="let product of products$ | async; trackBy: trackByProductId"
               (click)="onSelect(product)"
               [ngClass]="getClassForProduct(product)">
               {{ product.id + ' : ' + product.name }}
@@ -28,7 +29,7 @@ import { Product } from './product';
 })
 export class ProductListComponent implements OnInit {
 
-  products: Product[];
+  products$: Observable<Product[]>;
   selectedProduct: Product;
   
   constructor (private productService: ProductService) {}
@@ -38,9 +39,7 @@ export class ProductListComponent implements OnInit {
   }
   
   getProducts() {
-    this.productService
-        .getAllProducts()
-        .subscribe(p => this.products = p);
+    this.products$ = this.productService.getAllProducts();
   }
 
   onSelect(product: Product) {
@@ -56,6 +55,10 @@ export class ProductListComponent implements OnInit {
             this.getProducts();
           }
         });
+  }
+
+  trackByProductId(index: number, product: Product) {
+    return product.id;
   }
 
   getClassForProduct(product: Product) {
