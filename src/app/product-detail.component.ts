@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Product } from './product';
+import { CartService } from './cart/cart.service';
 
 @Component({
   selector: 'product-detail',
@@ -37,7 +38,15 @@ import { Product } from './product';
         <div class="form-group">
           <div class="col-md-offset-3 col-md-9">
             <button (click)="requestDelete()" 
-                    type="button" class="btn btn-danger">Delete</button>
+                    type="button" class="btn btn-danger">
+              <span class="glyphicon glyphicon-remove-circle"></span>
+              Delete
+            </button>
+            <button (click)="addToCart()" 
+                    type="button" class="btn btn-success">
+              <span class="glyphicon glyphicon-ok-circle"></span>
+              Add to cart
+            </button>
           </div>
         </div>
       </div> 
@@ -50,11 +59,15 @@ export class ProductDetailComponent implements OnInit {
   @Input() product: Product;
   @Output() deleteProduct = new EventEmitter<Product>();
 
-  constructor() {}
+  constructor(private cartService: CartService) {}
 
   ngOnInit() {}
 
   requestDelete() {
     this.deleteProduct.emit(this.product);
+  }
+
+  addToCart() {
+    this.cartService.addItem(this.product);
   }
 }

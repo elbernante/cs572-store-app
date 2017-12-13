@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Product } from '../product';
 import { LineItem, Cart } from './cart';
 
@@ -8,9 +8,8 @@ import { LineItem, Cart } from './cart';
 @Injectable()
 export class CartService {
   cart: Cart = new Cart();
-  i = 0;
-  _cartSizeSubject = new Subject<number>();
-  _itemsSubject = new Subject<LineItem[]>();
+  _cartSizeSubject = new BehaviorSubject<number>(0);
+  _itemsSubject = new BehaviorSubject<LineItem[]>([]);
 
   addItem(product: Product) : void {
     this.cart.addItem(product);
