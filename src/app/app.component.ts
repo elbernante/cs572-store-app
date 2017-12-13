@@ -3,12 +3,15 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
   template: `
-  <div class="container">
-    <h1>
-    Welcome to {{title}}!
-    </h1>
-    <product-list></product-list>
-  </div>
+    <div class="container">
+      <div class="page-header">
+        <h1>
+          Welcome to {{title}}!
+        </h1>
+      </div>
+      <cart></cart>
+      <product-list></product-list>
+    </div>
   `,
   styles: []
 })

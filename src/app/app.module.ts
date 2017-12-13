@@ -8,6 +8,7 @@ import { ProductListComponent } from './product-list.component';
 import { ProductDetailComponent } from './product-detail.component';
 import { ProductService } from './product.service';
 
+import { CartModule } from './cart/cart.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ProductService } from './product.service';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    CartModule
   ],
   providers: [ ProductService ],
   bootstrap: [AppComponent]

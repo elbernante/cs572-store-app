@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { of } from 'rxjs/observable/of';
+import 'rxjs/add/observable/of';
 import { Product } from './product';
 
 @Injectable()
@@ -17,11 +17,11 @@ export class ProductService {
   }
 
   getAllProducts(): Observable<Product[]> {
-    return of(this.products);
+    return Observable.of(this.products);
   }
 
   getProductById(id: number): Observable<Product> {
-    return of(this.products.find(e => e.id === id));
+    return Observable.of(this.products.find(e => e.id === id));
   }
   
   deleteProductById(id: number): Observable<boolean> {
