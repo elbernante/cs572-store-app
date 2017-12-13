@@ -1,8 +1,12 @@
 import { Product } from '../product';
 
 export class LineItem {
-  product: Product;
-  quantity: number = 0;
+  
+  constructor (
+    public product: Product,
+    public quantity: number = 0
+  ) {}
+
 }
 
 export class Cart {
@@ -13,7 +17,7 @@ export class Cart {
     if (!product) return null;
 
     let lineItem : LineItem = this.items.find(i => i.product.id === product.id)
-                   || { product: product, quantity: 0 };
+                   || new LineItem(product);
 
     if (lineItem.quantity === 0) {
       this.items.push(lineItem);
