@@ -47,14 +47,8 @@ export class ProductListComponent implements OnInit {
   }
 
   deleteProduct(product: Product) {
-    this.productService
-        .deleteProductById(product.id)
-        .subscribe(res => {
-          if (res) {
-            this.selectedProduct = null;
-            this.getProducts();
-          }
-        });
+    this.productService.deleteProductById(product.id);
+    this.selectedProduct = null;
   }
 
   trackByProductId(index: number, product: Product) {

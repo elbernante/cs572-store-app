@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import 'rxjs/add/observable/of';
 import { Product } from './product';
 
@@ -7,6 +8,7 @@ import { Product } from './product';
 export class ProductService { 
 
   products: Product[];
+  _producsSubject: BehaviorSubject<Product[]>;
 
   constructor() {
     this.products = [
@@ -14,10 +16,11 @@ export class ProductService {
       {id: 2, name: 'iPad', price: 430.23, description: 'Apple tablet'},
       {id: 3, name: 'Apple TV', price: 299.00, description: 'TV box'}
     ];
+    this._producsSubject = new BehaviorSubject<Product[]>(this.products);
   }
 
   getAllProducts(): Observable<Product[]> {
-    return Observable.of(this.products);
+    return this._producsSubject.asObservable();
   }
 
   getProductById(id: number): Observable<Product> {
@@ -25,10 +28,8 @@ export class ProductService {
   }
   
   deleteProductById(id: number): Observable<boolean> {
-    return Observable.create(o => {  
-      this.products = this.products.filter(e => e.id !== id);
-      o.next(true);
-      o.complete();
-    });
+    this.products = this.products.filter(e => e.id !== id);
+    this._producsSubject.next(this.products);
+    return Observable.of(true);
   }
 }
