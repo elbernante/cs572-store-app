@@ -17,7 +17,7 @@ import { LineItem } from './cart';
       <tr *ngFor="let item of items | async; trackBy: trackByProductId">
         <td>{{ item.product.name }}</td>
         <td>{{ item.quantity }}</td>
-        <td>{{ item.product.price }}</td>
+        <td>{{ item.product.price | currency }}</td>
         <td>{{ item.product | totalPrice:item.quantity | currency }}</td>
       </tr>
     </table>
