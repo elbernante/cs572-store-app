@@ -30,7 +30,6 @@ export class CartComponent implements OnInit {
   }
 
   onClick() {
-    this.cartService.addItem(null);
     this.showCart = !this.showCart;
   }
 }
