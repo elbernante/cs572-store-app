@@ -18,7 +18,7 @@ import { LineItem } from './cart';
         <td>{{ item.product.name }}</td>
         <td>{{ item.quantity }}</td>
         <td>{{ item.product.price }}</td>
-        <td>Total</td>
+        <td>{{ item.product | totalPrice:item.quantity | currency }}</td>
       </tr>
     </table>
   `,
