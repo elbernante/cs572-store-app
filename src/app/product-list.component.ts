@@ -23,6 +23,9 @@ import { Product } from './product';
                         (deleteProduct)="deleteProduct($event)">
         </product-detail>
       </div>
+      <div class="col-sm-3 col-md-4">
+        <product-form></product-form>
+      </div>
     </div>
   `,
   styles: []

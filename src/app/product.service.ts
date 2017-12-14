@@ -26,6 +26,12 @@ export class ProductService {
   getProductById(id: number): Observable<Product> {
     return Observable.of(this.products.find(e => e.id === id));
   }
+
+  addProduct(product: Product) {
+    this.products.push({ ...product });
+    this._producsSubject.next(this.products);
+    return Observable.of(true);
+  }
   
   deleteProductById(id: number): Observable<boolean> {
     this.products = this.products.filter(e => e.id !== id);

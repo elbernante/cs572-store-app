@@ -6,6 +6,8 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { ProductListComponent } from './product-list.component';
 import { ProductDetailComponent } from './product-detail.component';
+import { ProductFormComponent } from './product-form.component';
+
 import { ProductService } from './product.service';
 
 import { CartModule } from './cart/cart.module';
@@ -14,7 +16,8 @@ import { CartModule } from './cart/cart.module';
   declarations: [
     AppComponent,
     ProductListComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    ProductFormComponent
   ],
   imports: [
     BrowserModule,
